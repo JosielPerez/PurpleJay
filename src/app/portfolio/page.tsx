@@ -62,7 +62,7 @@ function Portfolio() {
     }
 
     const [allTimeReturn, setAllTimeReturn] = useState(returns)
-    const API_KEY =  'WWN8JLPOQGO3WWTR'
+    const API_KEY =  process.env.ALPHA_VANTAGE_API_KEY
     const balances:any = JSON.parse(localStorage.getItem('balances'))
     const [stockChartXValues, setStockChartXValues] = useState(balances.map(tuple => tuple[0]));
     const [stockChartYValues, setStockChartYValues] = useState(balances.map(tuple => tuple[1]));

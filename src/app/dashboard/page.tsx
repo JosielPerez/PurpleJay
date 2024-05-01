@@ -14,7 +14,7 @@ import AddStock from "@/components/addstock/AddStock";
 
 function Dashboard() {
 
-  const API_KEY =  'WWN8JLPOQGO3WWTR' //'NF6LXRYWSZLD6W5D' //'OTGL48VF2QBKDZSK'
+  const API_KEY =  process.env.ALPHA_VANTAGE_API_KEY
   let stockOptions = ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA", "META", "JPM", "JNJ", "V", "PYPL", "BABA", "BAC", "INTC", "NFLX", "VZ", "CSCO", "XOM", "WMT", "HD", "DIS", "PFE", "CVX", "T", "MRK", "NVDA", "BA", "GS", "ORCL", "CRM", "ADBE", "CMCSA", "KO", "IBM", "UNH", "MCD", "HON", "PEP", "CAT", "TMO", "PM", "VRTX", "MA", "QCOM", "WFC", "AMGN", "ACN", "NKE", "SLB", "GILD", "TXN", "LLY", "MDLZ", "UTX", "ABT", "COST", "HDB", "MDT", "TSM", "DWDP", "AZN", "SAP"]
   
   // const fetchWatchlist = async () =>{
@@ -326,9 +326,9 @@ function Dashboard() {
         onClick={() => {
           setBuyModal(true);
         }}
+        disabled={stocks ? !stocks.length: 1}
       >
-        {" "}
-        Buy{" "}
+        Buy
       </button>
       <button
         className={styles.stock_sell}
