@@ -16,6 +16,11 @@
   color: white;
   background-color: #6237a0;
 }
+.stock_buy:disabled {
+  color: black;
+  background-color: #c3c3c3;
+  cursor: not-allowed;
+}
 
 .stock_sell {
   width: 90px;
