@@ -8,10 +8,9 @@ function Buy({closeModal, stock, buyPower, setBuyPower}:any) {
     
   const [confirmPage, setConfirmPage] = useState(false);
   const [amount,setAmount] = useState<number | null>();
-  const [shareNumber,setShareNumber] = useState(0);  
-  let transactions:any = JSON.parse(localStorage.getItem('transactions'))
-  if (transactions == null) transactions = []
-  let watchlist:any = JSON.parse(localStorage.getItem('watchlist'))
+  const [shareNumber,setShareNumber] = useState(0);   
+  let transactions:any = JSON.parse(localStorage.getItem('transactions') || '[]')
+  let watchlist:any = JSON.parse(localStorage.getItem('watchlist') || '[]')
 
   function updateSharesOwned( list:any, newSharesOwned:number)
   {
@@ -110,7 +109,7 @@ return (
                 <header className='modal_header'>Buy Order</header>
                 <form>
                   <label htmlFor='amount' className='modal_label'>Amount: </label>
-                  <input type='number' id='amount' name='amount' value={amount} placeholder='$0' 
+                  <input type='number' id='amount' name='amount' value={amount ? amount: ''} placeholder='$0' 
                       className='modal_input' min='0' max={buyPower} onChange={e =>handleAmount(e.target.value)}/>
                   <label htmlFor='shares'className='modal_label'>Shares:</label>
                   <input type='number' id='shares' name='shares' placeholder='0'

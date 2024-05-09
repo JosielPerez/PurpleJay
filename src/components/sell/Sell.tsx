@@ -8,9 +8,9 @@ function Sell({closeModal, stock, buyPower, setBuyPower}:any) {
   const [confirmPage, setConfirmPage] = useState(false)
   const [amount,setAmount] = useState<number|null>(0)
   const [shareNumber,setShareNumber] = useState<number|null>();
-  let transactions:any = JSON.parse(localStorage.getItem('transactions'))
+  let transactions:any = JSON.parse(localStorage.getItem('transactions') || '[]')
   if (transactions == null) transactions = []
-  let watchlist:any = JSON.parse(localStorage.getItem('watchlist'))
+  let watchlist:any = JSON.parse(localStorage.getItem('watchlist') || '[]')
   
   function updateSharesOwned( list:any, newSharesOwned:number)
   {
@@ -66,7 +66,7 @@ function Sell({closeModal, stock, buyPower, setBuyPower}:any) {
   function handleConfirm()
   {
     
-    if(shareNumber != null)
+    if(shareNumber != null && amount != null)
     {
 
       // stock.shares_owned -= shareNumber
@@ -115,7 +115,7 @@ return (
                 <form>
                   <label htmlFor='shares'className='modal_label'>Shares:</label>
                   <input type='number' id='shares' name='shares' placeholder='0'
-                    className='modal_input' value={shareNumber}  min='0' max={stock.shares_owned} onChange={e =>handleShare(e.target.value)}
+                    className='modal_input' value={shareNumber ? shareNumber : ''}  min='0' max={stock.shares_owned} onChange={e =>handleShare(e.target.value)}
                   />
                   <label htmlFor='amount' className='modal_label'>Amount: </label>
                   <input type='text' id='amount' name='amount' value={'$'+ amount} placeholder='$0' 
